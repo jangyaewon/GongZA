@@ -11,5 +11,9 @@ class Restaurant < ApplicationRecord
     has_many         :visiteds
     has_many         :users, through: :visiteds
     
- 
+    
+    def search_restaurant(condition)
+        Restaurant.where("res_name LIKE ?","#{condition}%")
+    end
+    
 end

@@ -23,11 +23,13 @@
 
 <script>
   $(document).on('ready',function(){
-    $( "#search_btn" ).click(function() {
+    $( "#search_btn" ).click(function(e) {
+      e.preventDefault();
       var something = $( "#search_something" ).val();
       // $( "#search_something" ).html('');
+      console.log(something);
       $.ajax({
-        url: '/',
+        url: '/restaurants/search_restaurant',
         data: {
           q: something
         }
