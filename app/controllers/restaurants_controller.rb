@@ -10,6 +10,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
+    
   end
 
   # GET /restaurants/new
@@ -70,7 +71,7 @@ class RestaurantsController < ApplicationController
       if params[:q].strip.empty?
         format.js {render 'no_content'}
       else
-        @restaurants = Restaurant.where("res_name LIKE ?","#{params[:q]}%")
+        @restaurants = Restaurant.where("detail_addr LIKE ?","%#{params[:q]}%")
         format.js {render 'search_restaurant'}
       end
     end

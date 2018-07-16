@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
+  devise_scope :user do
+    get '/users/auth/kakao', to: 'users/omniauth_callbacks#kakao'
+    get '/users/auth/kakao/callback', to: 'users/omniauth_callbacks#kakao_auth'
+  end
   root 'restaurants#index'
   
   resources :restaurants do
