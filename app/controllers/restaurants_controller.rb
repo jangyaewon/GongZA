@@ -65,21 +65,30 @@ class RestaurantsController < ApplicationController
     end
   end
   
-  #식당 검색
-  def search_restaurant
-    respond_to do |format|
-      if params[:q].strip.empty?
-        format.js {render 'no_content'}
-      else
-        @restaurants = Restaurant.where("detail_addr LIKE ?","%#{params[:q]}%")
-        format.js {render 'search_restaurant'}
-      end
+  # #식당 검색
+  # def search_restaurant
+  #   respond_to do |format|
+  #     if params[:q].strip.empty?
+  #       format.js {render 'no_content'}
+  #     else
+  #       @restaurants = Restaurant.where("detail_addr LIKE ?","%#{params[:q]}%")
+        
+  #       format.js {render 'search_restaurant'}
+  #       format.html { render :search_result}
+  #     end
+  #   end
+  # end
+
+  def search_result
+    @restaurants = Restaurant.search_restaurant(params[:query])
+     respond_to do |format|
+      format.html { render :action => "search_result" }
+      format.xml  { render :xml => @restaurants }
     end
   end
-
   
-
   private
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant
       @restaurant = Restaurant.find(params[:id])

@@ -10,24 +10,7 @@
 <%  end %>
 <hr>
 <h1>공인맛집</h1>
-<form class="form-inline my-2 my-lg-0">
-  <input class="form-control w-75 p-3 restaurant-title" id= "search_something"type="search" placeholder="Search" aria-label="Search">
- &nbsp;&nbsp;<button class="btn btn-outline-success my-2 my-sm-0" id ="search_btn">Search</button>
-</form>
+<%= form_tag search_result_restaurants_path, :method => :get do %>
+<%= text_field_tag :query, params[:query] %> <%= submit_tag "Search!" %>
+<% end %>
 
-<script>
-  $(document).on('ready',function(){
-    $( "#search_btn" ).click(function(e) {
-      e.preventDefault();
-      var something = $( "#search_something" ).val();
-      // $( "#search_something" ).html('');
-      console.log(something);
-      $.ajax({
-        url: '/restaurants/search_restaurant',
-        data: {
-          q: something
-        }
-      })
-    });
-  });
-</script>

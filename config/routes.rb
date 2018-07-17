@@ -11,9 +11,11 @@ Rails.application.routes.draw do
     end
     
     collection do
-      get '/search_restaurant' => 'restaurants#search_restaurant'
+      get :search
+      # post '/search_restaurant' => 'restaurants#search_restaurant'
+      get '/search_result' => 'restaurants#search_result'
     end
-    
+    # get '/search' => 'restaurants#solr_search'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
