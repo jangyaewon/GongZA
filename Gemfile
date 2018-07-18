@@ -67,3 +67,5 @@ gem 'figaro'
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'
+
+gem 'kaminari'

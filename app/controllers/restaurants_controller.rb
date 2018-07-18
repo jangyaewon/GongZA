@@ -80,7 +80,8 @@ class RestaurantsController < ApplicationController
   # end
 
   def search_result
-    @restaurants = Restaurant.search_restaurant(params[:query])
+    temp = params[:query][0..1]
+    @restaurants = Restaurant.search_restaurant(temp).order('r_count desc')
      respond_to do |format|
       format.html { render :action => "search_result" }
       format.xml  { render :xml => @restaurants }
