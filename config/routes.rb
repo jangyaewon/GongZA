@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get '/keyboard' => 'kakao#keyboard'
+  post '/message' => 'kakao#message'
+
+
   devise_for :users
   devise_scope :user do
     get '/users/auth/kakao', to: 'users/omniauth_callbacks#kakao'
